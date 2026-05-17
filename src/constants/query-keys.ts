@@ -7,4 +7,10 @@ export const QUERY_KEYS = {
     tafsir: (nomor: number) =>
       [...QUERY_KEYS.surat.all, "tafsir", nomor] as const,
   },
+  doa: {
+    all: ["doa"] as const,
+    list: (params?: { grup?: string; tag?: string }) =>
+      [...QUERY_KEYS.doa.all, "list", params] as const,
+    detail: (id: number) => [...QUERY_KEYS.doa.all, "detail", id] as const,
+  },
 };
