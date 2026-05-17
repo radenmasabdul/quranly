@@ -19,4 +19,10 @@ export const QUERY_KEYS = {
     cityList: (provinsi: string) =>
       [...QUERY_KEYS.imsakiyah.all, "city", provinsi] as const,
   },
+  shalat: {
+    all: ["shalat"] as const,
+    provinceList: () => [...QUERY_KEYS.shalat.all, "list"] as const,
+    cityList: (provinsi: string) =>
+      [...QUERY_KEYS.shalat.all, "city", provinsi] as const,
+  },
 };
