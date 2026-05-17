@@ -13,4 +13,10 @@ export const QUERY_KEYS = {
       [...QUERY_KEYS.doa.all, "list", params] as const,
     detail: (id: number) => [...QUERY_KEYS.doa.all, "detail", id] as const,
   },
+  imsakiyah: {
+    all: ["imsakiyah"] as const,
+    provinceList: () => [...QUERY_KEYS.imsakiyah.all, "list"] as const,
+    cityList: (provinsi: string) =>
+      [...QUERY_KEYS.imsakiyah.all, "city", provinsi] as const,
+  },
 };
