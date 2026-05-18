@@ -62,7 +62,7 @@ export default function AppTabs() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Beranda",
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
