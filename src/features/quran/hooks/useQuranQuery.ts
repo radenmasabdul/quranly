@@ -1,8 +1,8 @@
 import { QUERY_KEYS } from "@/constants/query-keys";
 import { useQuery } from "@tanstack/react-query";
-import { getDetailSurat, getSurat, getTafsir } from "../api/surat.api";
+import { getDetailSurat, getSurat, getTafsir } from "../api/quran.api";
 
-export const useSurat = () => {
+export const useQuran = () => {
   return useQuery({
     queryKey: QUERY_KEYS.surat.list(),
     queryFn: getSurat,
@@ -10,7 +10,7 @@ export const useSurat = () => {
   });
 };
 
-export const useDetailSurat = (nomor: number) => {
+export const useDetailQuran = (nomor: number) => {
   return useQuery({
     queryKey: QUERY_KEYS.surat.detail(nomor),
     queryFn: () => getDetailSurat(nomor),
