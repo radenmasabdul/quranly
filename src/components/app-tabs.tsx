@@ -2,18 +2,14 @@ import { Colors } from "@/constants/theme";
 import Feather from "@expo/vector-icons/Feather";
 import { Tabs } from "expo-router";
 import React from "react";
-import { StyleSheet, useColorScheme, View } from "react-native";
+import { Platform, StyleSheet, useColorScheme, View } from "react-native";
 
 function TabIcon({
   icon,
-  color,
-  size,
   focused,
   bgColor,
 }: {
   icon: React.ReactNode;
-  color: string;
-  size: number;
   focused: boolean;
   bgColor: string;
 }) {
@@ -35,21 +31,22 @@ const styles = StyleSheet.create({
 });
 
 export default function AppTabs() {
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === "unspecified" ? "light" : scheme];
-  const activeBg = colors.indigo950 ?? colors.indigo600;
+  const scheme = useColorScheme() ?? "light";
+  const isDark = scheme === "dark";
+  const colors = Colors[isDark ? "dark" : "light"];
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.indigo400,
-        tabBarInactiveTintColor: colors.textMuted,
+        tabBarActiveTintColor: colors.brand,
+        tabBarInactiveTintColor: colors.textDisabled,
         tabBarStyle: {
-          backgroundColor: colors.backgroundPrimary,
+          backgroundColor: colors.backgroundElevated,
           borderTopColor: colors.borderDefault,
-          borderTopWidth: 1,
-          paddingBottom: 10,
-          paddingTop: 10,
+          borderTopWidth: 0.5,
+          paddingBottom: Platform.OS === "ios" ? 20 : 10,
+          paddingTop: 8,
+          height: Platform.OS === "ios" ? 82 : 62,
         },
         tabBarLabelStyle: {
           fontSize: 11,
@@ -66,14 +63,13 @@ export default function AppTabs() {
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
-              color={color}
-              size={size}
-              bgColor={activeBg}
+              bgColor={colors.navActiveBg}
               icon={<Feather name="home" size={size} color={color} />}
             />
           ),
         }}
       />
+
       <Tabs.Screen
         name="quran"
         options={{
@@ -81,14 +77,13 @@ export default function AppTabs() {
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
-              color={color}
-              size={size}
-              bgColor={activeBg}
+              bgColor={colors.navActiveBg}
               icon={<Feather name="book-open" size={size} color={color} />}
             />
           ),
         }}
       />
+
       <Tabs.Screen
         name="shalat"
         options={{
@@ -96,14 +91,13 @@ export default function AppTabs() {
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
-              color={color}
-              size={size}
-              bgColor={activeBg}
+              bgColor={colors.navActiveBg}
               icon={<Feather name="clock" size={size} color={color} />}
             />
           ),
         }}
       />
+
       <Tabs.Screen
         name="doa"
         options={{
@@ -111,14 +105,13 @@ export default function AppTabs() {
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
-              color={color}
-              size={size}
-              bgColor={activeBg}
+              bgColor={colors.navActiveBg}
               icon={<Feather name="heart" size={size} color={color} />}
             />
           ),
         }}
       />
+
       <Tabs.Screen
         name="search"
         options={{
@@ -126,9 +119,7 @@ export default function AppTabs() {
           tabBarIcon: ({ color, size, focused }) => (
             <TabIcon
               focused={focused}
-              color={color}
-              size={size}
-              bgColor={activeBg}
+              bgColor={colors.navActiveBg}
               icon={<Feather name="search" size={size} color={color} />}
             />
           ),

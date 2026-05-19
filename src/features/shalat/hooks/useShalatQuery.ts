@@ -1,7 +1,7 @@
 import { QUERY_KEYS } from "@/constants/query-keys";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  ShalatParams,
+  ScheduleParams,
   getCityList,
   getProvinceList,
   getSchedule,
@@ -21,8 +21,16 @@ export const useCityList = () => {
   });
 };
 
-export const useSchedule = () => {
-  return useMutation({
-    mutationFn: (params: ShalatParams) => getSchedule(params),
+export const useSchedule = (params: ScheduleParams | null) => {
+  return useQuery({
+    queryKey: QUERY_KEYS.shalat.schedule(
+      params?.provinsi ?? "",
+      params?.kabkota ?? "",
+      params?.bulan ?? 0,
+      params?.tahun ?? 0,
+    ),
+    queryFn: () => getSchedule(params!),
+    enabled: !!params?.provinsi && !!params?.kabkota,
+    staleTime: Infinity,
   });
 };
