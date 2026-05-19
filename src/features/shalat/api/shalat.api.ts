@@ -7,6 +7,13 @@ export interface ShalatParams {
   kabkota: string;
 }
 
+export interface ScheduleParams {
+  provinsi: string;
+  kabkota: string;
+  bulan: number;
+  tahun: number;
+}
+
 const getProvinceList = async (): Promise<string[]> => {
   const { data } = await api.get<ShalatResponse<string[]>>(
     ENDPOINTS.shalat.provinceList,
@@ -22,7 +29,7 @@ const getCityList = async (provinsi: string): Promise<string[]> => {
   return data.data;
 };
 
-const getSchedule = async (params: ShalatParams): Promise<ShalatSchedule> => {
+const getSchedule = async (params: ScheduleParams): Promise<ShalatSchedule> => {
   const { data } = await api.post<ShalatResponse<ShalatSchedule>>(
     ENDPOINTS.shalat.schedule,
     params,

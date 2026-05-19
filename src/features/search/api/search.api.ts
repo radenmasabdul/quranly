@@ -1,6 +1,6 @@
 import { api } from "@/services/api/axios";
 import { ENDPOINTS } from "@/services/api/endpoints";
-import type { ResultData, Tipe, VectorResponse } from "../types/vector.type";
+import type { ResultData, Tipe, VectorResponse } from "../types/search.type";
 
 export interface VectorParams {
   cari: string;

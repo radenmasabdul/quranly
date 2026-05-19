@@ -5,7 +5,7 @@ import type {
   Surat,
   SuratDetail,
   TafsirDetail,
-} from "../types/surat.type";
+} from "../types/quran.type";
 
 const getSurat = async (): Promise<Surat[]> => {
   const { data } = await api.get<ApiResponse<Surat[]>>(ENDPOINTS.surat.list);

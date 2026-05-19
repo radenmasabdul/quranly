@@ -9,7 +9,7 @@ interface LastRead {
   nomorAyat: number;
 }
 
-interface SuratStore {
+interface QuranStore {
   lastRead: LastRead | null;
   bookmarks: number[];
 
@@ -19,7 +19,7 @@ interface SuratStore {
   isBookmarked: (nomor: number) => boolean;
 }
 
-export const useSuratStore = create<SuratStore>()(
+export const useSuratStore = create<QuranStore>()(
   persist(
     (set, get) => ({
       lastRead: null,
@@ -40,7 +40,7 @@ export const useSuratStore = create<SuratStore>()(
       isBookmarked: (nomor) => get().bookmarks.includes(nomor),
     }),
     {
-      name: "surat-store",
+      name: "quran-store",
       storage: createJSONStorage(() => mmkvStorage),
     },
   ),
