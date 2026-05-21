@@ -1,6 +1,6 @@
 import { ThemedView } from "@/components/themed-view";
+import { AppHeader } from "@/components/ui/AppHeader";
 import { BottomTabInset, MaxContentWidth, Spacing } from "@/constants/theme";
-import { AppHeader } from "@/features/beranda/components/AppHeader";
 import { HomeSkeleton } from "@/features/beranda/components/HomeSkeleton";
 import { LastReadSection } from "@/features/beranda/components/LastReadSection";
 import { PrayerCard } from "@/features/beranda/components/PrayerCard";
@@ -52,7 +52,11 @@ export default function HomeScreen() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          <AppHeader />
+          <AppHeader
+            showLogo
+            title="Quranly"
+            subtitle="All Your Daily Worship, One App."
+          />
 
           <PrayerCard
             isDark={isDark}
